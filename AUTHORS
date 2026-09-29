@@ -1,0 +1,95 @@
+# Authors and copyright
+
+## This project
+
+(c) 2026 Vladimir Gordeychik <vvgordeychik@yandex.ru>
+
+**FictionBook Realm** — FB2-ридер для M5Paper S3 (ESP32-S3). Лицензия исходников
+прошивки: [MIT](LICENSE), © 2026.
+
+
+### Состав исходников под MIT
+
+Файлы, перечисленные ниже, — оригинальный код этого проекта, распространяемый
+на условиях MIT:
+
+```
+main/main.cpp
+src/**                       вкл. src/swofflogo_jpg.h (логотип, сгенерирован из assets/)
+include/**
+components/fb2_core/  filesys/  font_renderer/  freeimage/  platform/  scenes/
+components/pugixml/CMakeLists.txt
+components/freetype/CMakeLists.txt, components/freetype/ftmodule.h
+tools/fetch_deps.py
+CMakeLists.txt, sdkconfig.defaults, partitions.csv
+```
+
+`src/swofflogo_jpg.h` — это бинарный JPEG, преобразованный в массив C из
+`assets/swofflogo.jpg`; на него распространяется тот же MIT.
+
+## Сторонние компоненты
+
+Сторонний код **не** покрывается MIT этого проекта и сохраняет собственные
+условия. Ниже — полный перечень того, что попадает в сборку.
+
+### M5Stack / M5GFX — MIT, © 2021 M5Stack
+
+* `components/M5GFX` — подтягивается `tools/fetch_deps.py` (тег `0.2.28`),
+  лицензия в `components/M5GFX/LICENSE`
+* локальные правки, накладываемые скриптом, перечислены в нём же
+  (`src/lgfx/v1/platforms/esp32/common.cpp`)
+
+### M5Stack / M5Unified — MIT, © 2021 M5Stack
+
+* `components/M5Unified` — подтягивается `tools/fetch_deps.py` (тег `0.2.21`),
+  лицензия в `components/M5Unified/LICENSE`
+* локальные правки: `src/utility/Power_Class.cpp` (питание SD-карты)
+
+### Mika Tuupola / bm8563 — MIT, © 2020-2025 Mika Tuupola
+
+* `bm8563/` — <https://github.com/tuupola/bm8563>, лицензия в `bm8563/LICENSE`
+* локальная правка: `bm8563/CMakeLists.txt` — оригинальный `register_component()`
+  заменён на `idf_component_register()` под ESP-IDF (комментарий об этом есть
+  в самом файле)
+
+### ChaN / FatFs R0.16 — BSD-подобная, © 2025 ChaN
+
+* `fatfs/` — модуль FatFs R0.16. Полный текст условий и дисклеймер процитированы
+  в шапке `fatfs/ff.c`, состав файлов описан в `fatfs/00readme.txt`
+
+### FreeType Project — FTL или GPL-2.0-or-later (на выбор пользователя)
+
+* `freetype2/` — <https://freetype.org>, текст лицензий в `freetype2/LICENSE.TXT`.
+  Двойная лицензия: выберите FTL **или** GPL-2.0-or-later и соблюдайте её
+  условия. Распространение бинарника под GPL требует передачи полного
+  соответствующего исходника.
+
+### Arseny Kapoulkine / pugixml — MIT, © 2006-2026
+
+* `pugixml/` — <https://pugixml.org>, лицензия цитируется в `pugixml/pugixml.hpp`
+  (SPDX: `SPDX-FileCopyrightText: Copyright (C) 2006-2026, by Arseny Kapoulkine`)
+
+### Sean Barrett / stb — MIT или Public Domain (на выбор)
+
+* `stb/stb_image.h`, `stb/stb_image_resize2.h`, `stb/stb_zip.h` —
+  <https://github.com/nothings/stb>, оба варианта лицензии приведены в конце
+  `stb/stb_image.h`
+
+## Шрифты и изображения, попадающие в сборку
+
+| Что | Где | Лицензия |
+|---|---|---|
+| efont (китайский/японский/корейский CJK) | `components/M5GFX/src/lgfx/Fonts/efont/` | © 2000-2001 /efont/ The Electronic Font Open Laboratory, BSD-подобная — `COPYRIGHT.txt` |
+| IPA Japan (Mincho/Gothic) | `components/M5GFX/src/lgfx/Fonts/IPA/` | IPA Font License v1.0 — `IPA_Font_License_Agreement_v1.0.txt` |
+| GFXFF-шрифты (FreeSans/FreeSerif/FreeMono/TomThumb) | `components/M5GFX/src/lgfx/Fonts/GFXFF/` | © 2012 Adafruit Industries, BSD-подобная — `license.txt` |
+| DejaVu / Orbitron / Roboto / Satisfy / Yellowtail | `components/M5GFX/src/lgfx/Fonts/Custom/` | Bitstream Vera / DejaVu — <https://dejavu-fonts.github.io/License.html> |
+
+Шрифты, которые читаются с SD-карты в рантайме (`arial.ttf`, `verdana.ttf` и
+прочие из каталога `.fonts/`), в дистрибутив **не входят**. Условия
+распространения применяются к ним отдельно — например, Arial и Verdana
+защищены и требуют лицензирования у правообладателя.
+
+## Вклады
+
+Патчи приветствуются. Отправляя pull request, вы подтверждаете согласие
+распространять свой код на условиях MIT этого проекта.

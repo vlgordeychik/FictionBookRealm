@@ -1,0 +1,12 @@
+# Артефакты сборки
+/build/
+/build_*/
+/sdkconfig
+/sdkconfig.old
+/dependencies.lock
+managed_components/
+
+# Пререквизиты, подтягиваемые tools/fetch_deps.py
+/components/M5GFX/
+/components/M5Unified/
+/.deps-cache/

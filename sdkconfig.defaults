@@ -1,0 +1,54 @@
+# ─── Target ────────────────────────────────────────────────────
+CONFIG_IDF_TARGET="esp32s3"
+
+# ─── PSRAM (OPI, required for PaperS3) ────────────────────────
+CONFIG_ESP32S3_SPIRAM_SUPPORT=y
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_TRY_ALLOCATE_WIFI_LWIP=y
+
+# ─── Flash size (Paper S3 has 16MB) ──────────────────────────
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+
+# ─── Partition table ───────────────────────────────────────────
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# ─── Compiler ──────────────────────────────────────────────────
+# App has exclusive use of the device — prefer -O2 over -Os.
+CONFIG_COMPILER_OPTIMIZATION_PERF=y
+
+# ─── CPU frequency ─────────────────────────────────────────────
+# 240 MHz base; indexing/layout benefit directly.
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ=240
+CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240=y
+
+# ─── FreeRTOS ──────────────────────────────────────────────────
+CONFIG_FREERTOS_HZ=1000
+
+# ─── Log level ─────────────────────────────────────────────────
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+CONFIG_LOG_DEFAULT_LEVEL=3
+
+# ─── FatFs (for SD card) ──────────────────────────────────────
+CONFIG_FATFS_LONG_FILENAME_SUPPORT=y
+CONFIG_FATFS_MAX_LFN=255
+CONFIG_FATFS_LFN_HEAP=y
+CONFIG_FATFS_CODEPAGE_866=y
+
+# ─── NVS ───────────────────────────────────────────────────────
+CONFIG_NVS_ENCRYPTION_NONE=y
+
+# ─── Stack sizes ───────────────────────────────────────────────
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=32768
+CONFIG_ESP_SYSTEM_EVENT_TASK_STACK_SIZE=4096
+
+# ─── Console: USB Serial/JTAG ──────────────────────────────────
+# M5Paper S3 has no exposed UART header; log via the built-in USB CDC/JTAG.
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+CONFIG_ESP_CONSOLE_UART_NUM=-1
+CONFIG_ESP_CONSOLE_SECONDARY_NONE=y
+CONFIG_ESP_CONSOLE_ROM_SERIAL_PORT_NUM=4
+CONFIG_CONSOLE_UART_NUM=-1
