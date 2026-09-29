@@ -184,8 +184,7 @@ Smallest app partition is 0x300000 bytes. 0x1e9620 bytes (64%) free.
 
 Исходники прошивки — **MIT**, см. [LICENSE](LICENSE). Полный перечень авторов,
 атрибуции и условий сторонних компонентов (включая шрифты) — в
-[AUTHORS](AUTHORS). Правообладатель в строке `Copyright` намеренно оставлен
-незаполненным — впишите его перед публикацией.
+[AUTHORS](AUTHORS).
 
 Сторонние библиотеки сохраняют собственные условия: `bm8563/LICENSE`,
 `freetype2/LICENSE.TXT`, а также заголовки в `fatfs/ff.c`, `pugixml/pugixml.hpp`
